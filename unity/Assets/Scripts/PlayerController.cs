@@ -10,8 +10,9 @@ public class PlayerController : MonoBehaviour {
     public KeyCode backwardsKey;
     public KeyCode shootKey;
     public float maxRotationSpeed = 0.1f;
-    public float maxForwardsSpeed = 1f;
-    public float maxBackwardsSpeed = 0.5f;
+    public float forwardsSpeed = 1f;
+    public float backwardsSpeed = 0.5f;
+    public float maxSpeed = 10f;
     public float initialRotation = 0f;
 
 	// Use this for initialization
@@ -24,16 +25,26 @@ public class PlayerController : MonoBehaviour {
 	void Update () {
 	    if (Input.GetKey(rotateLeftKey))
         {
-            //body.rotation.AngleAxis(new Vector3(0, 1, 0), maxRotationSpeed);
+            body.angularVelocity = new Vector3(0, -maxRotationSpeed, 0);
         } else if (Input.GetKey(rotateRightKey))
         {
-            //body.rotation.y -= maxRotationSpeed;
-        } else if (Input.GetKey(forwardsKey))
+            body.angularVelocity = new Vector3(0, maxRotationSpeed, 0);
+        } else
         {
-            body.AddForce(new Vector2(0, maxForwardsSpeed));
+            body.angularVelocity *= 0.5f;
+        }
+
+        if (Input.GetKey(forwardsKey))
+        {
+            body.velocity += transform.forward * forwardsSpeed;
         } else if (Input.GetKey(backwardsKey))
         {
-            body.AddForce(new Vector2(0, -maxBackwardsSpeed));
+            body.velocity += transform.forward * -backwardsSpeed;
+        } else
+        {
+            body.velocity *= 0.9f;
         }
+
+        Vector3.ClampMagnitude(body.velocity, maxSpeed);
 	}
 }

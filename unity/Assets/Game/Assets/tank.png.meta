@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 07c867f43a9332644af0ddcf4c938de5
-timeCreated: 1440253542
+timeCreated: 1440258041
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -58,8 +58,8 @@ TextureImporter:
         y: 0
         width: 56
         height: 64
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 9
+      pivot: {x: .5, y: .378117919}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: tank_white
       rect:
@@ -68,8 +68,8 @@ TextureImporter:
         y: 0
         width: 56
         height: 64
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 9
+      pivot: {x: .5, y: .372448981}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
