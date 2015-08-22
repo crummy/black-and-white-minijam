@@ -21,7 +21,7 @@ public class GetColor : MonoBehaviour
                 //Vector2 pixelCord = new Vector2(uv.x * texture.width, uv.y * texture.height);
                 
                 //Color c = texture.GetPixel((int)pixelCord.x, (int)pixelCord.y);
-                Debug.Log(tex.GetPixel(0,0));
+                //Debug.Log(tex.GetPixel(0,0));
             }
            
         }	
