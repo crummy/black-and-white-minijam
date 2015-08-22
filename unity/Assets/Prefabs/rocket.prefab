@@ -72,7 +72,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 84
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!114 &11435512
 MonoBehaviour:
@@ -88,9 +88,9 @@ MonoBehaviour:
   explodeSound: {fileID: 8300000, guid: 9e569a27012a35348ac9a3bbcfeaa373, type: 3}
   fireSound: {fileID: 8300000, guid: de3dbbedfb271db4fbb450889bf16b0a, type: 3}
   initialVelocity: 1
-  acceleration: .100000001
-  maxVelocity: 10
-  maxDistance: 20
+  acceleration: 200
+  maxVelocity: 1000
+  maxDistance: 10
 --- !u!135 &13506250
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -163,6 +163,22 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Layer
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: acceleration
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: maxVelocity
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: maxDistance
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Constraints
+      value: 116
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
