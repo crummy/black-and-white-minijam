@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class Singleton<T> : MonoBehaviour where T : MonoBehaviour {
-	public T Instances {get; private set;}
+	public static T Instances {get; private set;}
 	
 	public bool Exists {get; private set;}
 	
