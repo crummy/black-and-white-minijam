@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour {
     public float maxSpeed = 10f;
     public float initialRotation = 0f;
 
+    private float currentVelocity = 0.0f;
+
 	// Use this for initialization
 	void Start () {
         body = GetComponent<Rigidbody>();
@@ -22,7 +24,7 @@ public class PlayerController : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 	    if (Input.GetKey(rotateLeftKey))
         {
             body.angularVelocity = new Vector3(0, -maxRotationSpeed, 0);
@@ -36,15 +38,16 @@ public class PlayerController : MonoBehaviour {
 
         if (Input.GetKey(forwardsKey))
         {
-            body.velocity += transform.forward * forwardsSpeed;
+            currentVelocity += forwardsSpeed;
         } else if (Input.GetKey(backwardsKey))
         {
-            body.velocity += transform.forward * -backwardsSpeed;
+            currentVelocity += -backwardsSpeed;
         } else
         {
-            body.velocity *= 0.9f;
+            currentVelocity *= 0.9f;
         }
 
-        Vector3.ClampMagnitude(body.velocity, maxSpeed);
+        currentVelocity = Mathf.Clamp(currentVelocity,-maxSpeed, maxSpeed);
+        body.AddForce(transform.forward * currentVelocity - body.velocity, ForceMode.VelocityChange);
 	}
 }
