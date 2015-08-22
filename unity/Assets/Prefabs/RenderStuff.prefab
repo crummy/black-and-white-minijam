@@ -257,7 +257,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: .300000012
-  far clip plane: 1000
+  far clip plane: 11
   field of view: 60
   orthographic: 1
   orthographic size: 5
@@ -497,6 +497,9 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 256
+  useColorBlobs: 1
+  whiteArea: {fileID: 11442836}
+  blackArea: {fileID: 11408158}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -517,6 +520,14 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: mask.m_Bits
       value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: useColorBlobs
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: far clip plane
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

@@ -9,20 +9,24 @@ public class RayCastTeset : MonoBehaviour {
     public bool blackColor = false;
 	
 	// Update is called once per frame
-	void Update () {
-        if (Input.GetButtonDown("Fire1"))
-        {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-
-
-
-            if (Physics.Raycast(ray, out hit))
-            {
-                GameObject ge = (GameObject) Instantiate(prefab, hit.point + offset, Quaternion.LookRotation(Vector3.left));
-                if(blackColor)
-                    ge.GetComponent<Shoot>().color = Color.black;
-            }
-        }	
+	void Update () 
+	{
+		if(!ColorBlobStackManager.Instances.useColorBlobs)
+		{
+	        if (Input.GetButtonDown("Fire1"))
+	        {
+	            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+	            RaycastHit hit;
+	
+	
+	
+	            if (Physics.Raycast(ray, out hit))
+	            {
+	                GameObject ge = (GameObject) Instantiate(prefab, hit.point + offset, Quaternion.LookRotation(Vector3.left));
+	                if(blackColor)
+	                    ge.GetComponent<Shoot>().color = Color.black;
+	            }
+	        }	
+        }
 	}
 }

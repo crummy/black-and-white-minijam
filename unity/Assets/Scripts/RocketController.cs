@@ -68,7 +68,7 @@ public class RocketController : MonoBehaviour {
     {
         Debug.Log("Rocket exploded");
         AudioSource.PlayClipAtPoint(explodeSound, Vector3.zero);
-        ColorBlobStackManager.Instances.SpawnSpericalColorBlob(ColorBlob.BlobColor.Black, body.position);
+        ColorBlobStackManager.Instances.SpawnSpericalColorBlob(ColorBlob.BlobColor.Black, transform.position / 2);
         status = Status.ready;
         gameObject.SetActive(false);
     }

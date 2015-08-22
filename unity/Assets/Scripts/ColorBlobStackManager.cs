@@ -11,6 +11,10 @@ public class ColorBlobStackManager : Singleton<ColorBlobStackManager> {
 	public SpericalColorBlob blackSpherePrefab;
 	public SpericalColorBlob whiteSpherePrefab;
 	public LayerMask mask;
+	
+	public bool useColorBlobs;
+	public DestroyAfterRender whiteArea;
+	public DestroyAfterRender blackArea;
 	#endregion
 	
 	#region private variables 	
@@ -49,7 +53,7 @@ public class ColorBlobStackManager : Singleton<ColorBlobStackManager> {
 		
 		spawnedBlob.transform.position = new Vector3(position.x, -1, position.y) + transform.position;
 		
-		spawnedBlob.transform.SetParent(transform);
+//		spawnedBlob.transform.SetParent(transform);
 		
 		PushColorBlob(spawnedBlob);
 	}
@@ -73,5 +77,21 @@ public class ColorBlobStackManager : Singleton<ColorBlobStackManager> {
 		base.Awake ();
 		colorStack = new Stack<ColorBlob>();
 		renderTextureCamera = GetComponent<Camera>();
+		if(useColorBlobs)
+		{
+			renderTextureCamera.clearFlags= CameraClearFlags.Skybox;
+			blackArea.enabled = false;
+			whiteArea.enabled = false;
+		}
 	}
+	
+//	protected virtual void Update()
+//	{
+//		if(Input.GetMouseButtonDown(0))
+//		{
+//			Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+//			SpawnSpericalColorBlob(ColorBlob.BlobColor.Black, new Vector2(pos.x,pos.z));
+//		}
+//	}
+	
 }
