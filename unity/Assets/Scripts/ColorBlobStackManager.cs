@@ -41,6 +41,8 @@ public class ColorBlobStackManager : Singleton<ColorBlobStackManager> {
 		
 		spawnedBlob.transform.position = new Vector3(position.x, transform.position.y + 1, position.y);
 		
+		spawnedBlob.transform.SetParent(transform);
+		
 		PushColorBlob(spawnedBlob);
 	}
 	
