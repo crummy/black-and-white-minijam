@@ -10,6 +10,7 @@ public class ColorBlobStackManager : Singleton<ColorBlobStackManager> {
 	#region inspector variables
 	public SpericalColorBlob blackSpherePrefab;
 	public SpericalColorBlob whiteSpherePrefab;
+	public LayerMask mask;
 	#endregion
 	
 	#region private variables 	
@@ -51,6 +52,19 @@ public class ColorBlobStackManager : Singleton<ColorBlobStackManager> {
 		spawnedBlob.transform.SetParent(transform);
 		
 		PushColorBlob(spawnedBlob);
+	}
+	
+	public ColorBlob.BlobColor GetColorAtPosition(Vector2 position)
+	{
+		Ray ray = new Ray(new Vector3(position.x, 0, position.y) + transform.position, Vector3.down);
+		RaycastHit hitInfo;
+		if(Physics.Raycast(ray, out hitInfo, renderTextureCamera.farClipPlane,mask))
+		{
+			ColorBlob blob = hitInfo.collider.GetComponent<ColorBlob>();
+			if(blob)
+				return blob.color;
+		}
+		return position.x>0? ColorBlob.BlobColor.White : ColorBlob.BlobColor.Black;
 	}
 	
 	

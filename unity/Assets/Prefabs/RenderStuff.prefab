@@ -494,6 +494,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blackSpherePrefab: {fileID: 11476786, guid: 950bff3bb9b0f724c890e127d7fec72e, type: 2}
   whiteSpherePrefab: {fileID: 11470542, guid: 4b83f77f98246504d915bbdcfe7b639a, type: 2}
+  mask:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -511,6 +514,10 @@ Prefab:
       value: 
       objectReference: {fileID: 11470542, guid: 4b83f77f98246504d915bbdcfe7b639a,
         type: 2}
+    - target: {fileID: 0}
+      propertyPath: mask.m_Bits
+      value: 256
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 111316}
