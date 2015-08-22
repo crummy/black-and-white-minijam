@@ -450,6 +450,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11471158, guid: 76562ad946f00bf4a9b46e96d5002164, type: 2}
+      propertyPath: timeLimit
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11444290, guid: 76562ad946f00bf4a9b46e96d5002164, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 76562ad946f00bf4a9b46e96d5002164, type: 2}

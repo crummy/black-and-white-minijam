@@ -113,12 +113,16 @@ public class CountPixels : MonoBehaviour
     public void OnGUI()
     {
         //GUI.Box(new Rect(screenMin, screenMax - screenMin), "Test");
-        GUI.Label(new Rect(0, 0, 300, 25), "Remaning Time " + (endtime-Time.time));
-
+       
         if (endGame)
         {
             GUI.Label(new Rect(0, 0, 300, 25), "Remaning Time 0");
             GUI.Label(new Rect(0, 30, 300, 25), "White has " + (whiteScore*100) + " Black has " + (blackScore*100));
+
+            if(GUI.Button(new Rect(30, 60, 100, 25), "Restart"))
+            {
+                Application.LoadLevel(0);
+            }
 
         }
         else
