@@ -20,13 +20,26 @@ public class PlayerController : MonoBehaviour {
 
     private float currentVelocity = 0.0f;
 
+    public GameObject rocketPrefab;
+    public bool blackPlayer;
+
 	// Use this for initialization
 	void Start () {
         body = GetComponent<Rigidbody>();
         body.rotation.Set(0, initialRotation, 0, 0);
-        iRocket = Instantiate<GameObject>(rocket);
     }
-	
+
+    void Update()
+    {
+        if (Input.GetKeyDown(shootKey))
+        {
+            GameObject iRocket = (GameObject)GameObject.Instantiate(rocketPrefab, transform.position, transform.rotation);
+            Physics.IgnoreCollision(iRocket.GetComponent<Collider>(), gameObject.GetComponent<Collider>());
+            Rocket2 r2 = iRocket.GetComponent<Rocket2>();
+            r2.StartMe(1,blackPlayer);
+        }
+    }
+
 	// Update is called once per frame
 	void FixedUpdate () {
 	    if (Input.GetKey(rotateLeftKey))
@@ -54,9 +67,6 @@ public class PlayerController : MonoBehaviour {
         currentVelocity = Mathf.Clamp(currentVelocity,-maxSpeed, maxSpeed);
         body.AddForce(transform.forward * currentVelocity - body.velocity, ForceMode.VelocityChange);
 
-        if (Input.GetKey(shootKey))
-        {
-            iRocket.GetComponent<RocketController>().Fire(body.position, transform.forward);
-        }
+        
 	}
 }

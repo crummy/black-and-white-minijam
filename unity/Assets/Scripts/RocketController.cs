@@ -19,6 +19,10 @@ public class RocketController : MonoBehaviour {
 
     private Rigidbody body;
 
+    public GameObject paticleEffect;
+    public Vector3 offset = new Vector3(0, 0, 100);
+    public bool blackPlayer;
+
 	// Use this for initialization
 	void Start () {
         Debug.Log("whaaat");
@@ -71,7 +75,17 @@ public class RocketController : MonoBehaviour {
     {
         Debug.Log("Rocket exploded");
         AudioSource.PlayClipAtPoint(explodeSound, Vector3.zero);
-        ColorBlobStackManager.Instances.SpawnSpericalColorBlob(ColorBlob.BlobColor.Black, transform.position);
+        if (paticleEffect != null)
+        {
+            GameObject ge = (GameObject)Instantiate(paticleEffect, transform.position + offset, Quaternion.LookRotation(-transform.forward));
+            if (blackPlayer)
+                ge.GetComponent<Shoot>().color = Color.black;
+        }
+        else
+        {
+            ColorBlobStackManager.Instances.SpawnSpericalColorBlob(ColorBlob.BlobColor.Black, transform.position);   
+        }
+        
         status = Status.ready;
     }
 }

@@ -96,7 +96,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 156896}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -8.5, z: -2}
+  m_LocalPosition: {x: 0, y: -9, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 449238}
@@ -154,16 +154,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f054f24ce77087d419fa157633d592bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rocket: {fileID: 180358, guid: d3691ca32b426de45ab9e4ee3c8d247e, type: 2}
   rotateLeftKey: 97
   rotateRightKey: 100
   forwardsKey: 119
   backwardsKey: 115
-  shootKey: 0
+  shootKey: 32
   maxRotationSpeed: 2
   forwardsSpeed: .100000001
   backwardsSpeed: .0500000007
   maxSpeed: 2
   initialRotation: 0
+  rocketPrefab: {fileID: 180358, guid: d3691ca32b426de45ab9e4ee3c8d247e, type: 2}
+  blackPlayer: 1
 --- !u!212 &21212326
 SpriteRenderer:
   m_ObjectHideFlags: 1

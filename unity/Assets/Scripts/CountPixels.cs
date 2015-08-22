@@ -4,6 +4,10 @@ using System.Collections;
 public class CountPixels : MonoBehaviour
 {
 
+    public float timeLimit = 60;
+
+
+    public float endtime;
 
     public GameObject[] turnObjectsOff;
     public BoxCollider box;
@@ -17,6 +21,8 @@ public class CountPixels : MonoBehaviour
     private Vector2 screenMin;
     private Vector2 screenMax;
 
+    public bool endGame = false;
+
     public float blackScore
     {
         get { return 1 - whiteScore;  }
@@ -26,6 +32,7 @@ public class CountPixels : MonoBehaviour
 	void Start ()
 	{
 	    mainCam = GetComponent<Camera>();
+        endtime = Time.time + timeLimit;
 	}
 
     private void SwitchGameObjects(bool hide)
@@ -52,6 +59,12 @@ public class CountPixels : MonoBehaviour
 
     public void Update()
     {
+        if (Time.time > endtime && !endGame)
+        {
+            countScore = true;
+            endGame = true;
+        }
+
         if (countScore)
         {
             HideGameObjects();
@@ -100,5 +113,18 @@ public class CountPixels : MonoBehaviour
     public void OnGUI()
     {
         //GUI.Box(new Rect(screenMin, screenMax - screenMin), "Test");
+        GUI.Label(new Rect(0, 0, 300, 25), "Remaning Time " + (endtime-Time.time));
+
+        if (endGame)
+        {
+            GUI.Label(new Rect(0, 0, 300, 25), "Remaning Time 0");
+            GUI.Label(new Rect(0, 30, 300, 25), "White has " + (whiteScore*100) + " Black has " + (blackScore*100));
+
+        }
+        else
+        {
+            GUI.Label(new Rect(0, 0, 300, 25), "Remaning Time " + (endtime - Time.time));
+    
+        }
     }
 }
