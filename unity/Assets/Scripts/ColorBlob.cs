@@ -8,14 +8,8 @@ public class ColorBlob : MonoBehaviour {
 		Black,
 		White,
 	}
-	
-	public BlobColor color;
-	
-//	void Start () {
-//	
-//	}
-//	
-//	void Update () {
-//	
-//	}
+	/// <summary>
+	/// Do not edit by script
+	/// </summary>
+	public BlobColor color = BlobColor.Black;
 }
