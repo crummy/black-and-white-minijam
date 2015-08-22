@@ -7,20 +7,27 @@ using System.Collections.Generic;
 /// </summary>
 [RequireComponent(typeof(Camera))]
 public class ColorBlobStackManager : Singleton<ColorBlobStackManager> {
-	
+	#region inspector variables
 	public SpericalColorBlob blackSpherePrefab;
 	public SpericalColorBlob whiteSpherePrefab;
+	#endregion
 	
+	#region private variables 	
 	private Stack<ColorBlob> colorStack;
 	private Camera renderTextureCamera;
 	
 	private const float DistanceBetweenLayers = 0.01f;
+	#endregion
 	
 	public void PushColorBlob(ColorBlob blob)
 	{
 		colorStack.Push(blob);
-		transform.position = transform.position + Vector3.up * DistanceBetweenLayers;
-		renderTextureCamera.farClipPlane += DistanceBetweenLayers;
+		
+		float blobObjectHeight = blob.GetComponent<Collider>().bounds.extents.y;
+		
+		transform.position += Vector3.up * (DistanceBetweenLayers + blobObjectHeight);
+		
+		renderTextureCamera.farClipPlane += DistanceBetweenLayers + blobObjectHeight;
 	}
 	
 	public void SpawnSpericalColorBlob(ColorBlob.BlobColor color, Vector2 position, float radius = 1.0f)
@@ -39,7 +46,7 @@ public class ColorBlobStackManager : Singleton<ColorBlobStackManager> {
 		
 		spawnedBlob.Radius = radius;
 		
-		spawnedBlob.transform.position = new Vector3(position.x, transform.position.y + 1, position.y);
+		spawnedBlob.transform.position = new Vector3(position.x, -1, position.y) + transform.position;
 		
 		spawnedBlob.transform.SetParent(transform);
 		
