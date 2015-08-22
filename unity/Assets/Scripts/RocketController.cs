@@ -8,7 +8,7 @@ public class RocketController : MonoBehaviour {
     public AudioClip fireSound;
 
     public float initialVelocity = 1f;
-    public float acceleration = 1.1f;
+    public float acceleration = 5f;
     public float maxVelocity = 10f;
     public float maxDistance = 20f;
 
@@ -19,9 +19,7 @@ public class RocketController : MonoBehaviour {
 
     private Rigidbody body;
 
-	// Use this for initialization
-	void Start () {
-        Debug.Log("whaaat");
+	void Awake () {
         status = Status.ready;
         body = GetComponent<Rigidbody>();
 	}
@@ -47,7 +45,6 @@ public class RocketController : MonoBehaviour {
     {
         if (status == Status.ready)
         {
-            Debug.Log("Rocket fired");
             transform.position = from;
             transform.forward = direction;
             firedPosition = from;
@@ -71,7 +68,8 @@ public class RocketController : MonoBehaviour {
     {
         Debug.Log("Rocket exploded");
         AudioSource.PlayClipAtPoint(explodeSound, Vector3.zero);
-        ColorBlobStackManager.Instances.SpawnSpericalColorBlob(ColorBlob.BlobColor.Black, transform.position);
+        ColorBlobStackManager.Instances.SpawnSpericalColorBlob(ColorBlob.BlobColor.Black, body.position);
         status = Status.ready;
+        gameObject.SetActive(false);
     }
 }

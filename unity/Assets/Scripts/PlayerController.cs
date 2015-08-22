@@ -25,6 +25,8 @@ public class PlayerController : MonoBehaviour {
         body = GetComponent<Rigidbody>();
         body.rotation.Set(0, initialRotation, 0, 0);
         iRocket = Instantiate<GameObject>(rocket);
+        Physics.IgnoreCollision(iRocket.GetComponent<Collider>(), GetComponent<Collider>());
+        iRocket.SetActive(false);
     }
 	
 	// Update is called once per frame
@@ -56,6 +58,9 @@ public class PlayerController : MonoBehaviour {
 
         if (Input.GetKey(shootKey))
         {
+            iRocket.SetActive(true);
+            Physics.IgnoreCollision(iRocket.GetComponent<Collider>(), GetComponent<Collider>());
+
             iRocket.GetComponent<RocketController>().Fire(body.position, transform.forward);
         }
 	}
