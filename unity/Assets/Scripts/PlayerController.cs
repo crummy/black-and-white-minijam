@@ -4,11 +4,14 @@ using System.Collections;
 public class PlayerController : MonoBehaviour {
 
     private Rigidbody body;
+    public GameObject rocket;
+    private GameObject iRocket;
     public KeyCode rotateLeftKey;
     public KeyCode rotateRightKey;
     public KeyCode forwardsKey;
     public KeyCode backwardsKey;
     public KeyCode shootKey;
+
     public float maxRotationSpeed = 0.1f;
     public float forwardsSpeed = 1f;
     public float backwardsSpeed = 0.5f;
@@ -21,7 +24,8 @@ public class PlayerController : MonoBehaviour {
 	void Start () {
         body = GetComponent<Rigidbody>();
         body.rotation.Set(0, initialRotation, 0, 0);
-	}
+        iRocket = Instantiate<GameObject>(rocket);
+    }
 	
 	// Update is called once per frame
 	void FixedUpdate () {
@@ -49,5 +53,10 @@ public class PlayerController : MonoBehaviour {
 
         currentVelocity = Mathf.Clamp(currentVelocity,-maxSpeed, maxSpeed);
         body.AddForce(transform.forward * currentVelocity - body.velocity, ForceMode.VelocityChange);
+
+        if (Input.GetKey(shootKey))
+        {
+            iRocket.GetComponent<RocketController>().Fire(body.position, transform.forward);
+        }
 	}
 }
